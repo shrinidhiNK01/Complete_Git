@@ -59,5 +59,26 @@ git restore --staged hello.html  #now it wont track this file
 or
 git restore --staged . 
 
-Git revert:-
+Git revert:- Comeback from commited file
 ============================
+
+git revert <Hash Value>    /*-- ':qa' to exit from trap --*/  
+
+
+Hash Value of a Commited File:-
+================================
+git log  /*-- 'q' to exit from trap --*/  
+git log --oneline
+
+    
+Reset Examples:
+=========================================
+a) Commit → Staging Area
+git reset --soft HEAD~1
+
+b) Commit → Unstaged Changes (Working Directory but not staged)
+git reset --mixed HEAD~1
+
+c) Commit → Completely Removed (Working Directory also reset)
+git reset --hard HEAD~1
+
