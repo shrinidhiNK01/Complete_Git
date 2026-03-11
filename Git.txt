@@ -1,0 +1,39 @@
+Version Control System
+Track Changes
+Collaberate Efficiently
+Backup and Recovery
+Multiple branches and Merging
+
+Github
+---------------
+Centralized Repository
+Collaboration Tools
+Backup and Deployment
+Code Hosting
+collaboration
+Community and Open source
+Globally share the code
+
+
+Git code cheet sheet
+---------------------------
+1)git config --global user.name "shrinidhiNK01"  //username                        | ==>Git and Github is connected
+2)git config --global user.email "kulkarnishrinidhi0001@gmail.com" (primary email) |
+3)git config --list
+4)git init 
+5)touch first.html
+6)git add .
+7)git status
+8)git commit -m "add file"
+9)git branch -M main
+10)git branch 
+11)git remote add origin <url>
+12)git push -u origin master
+
+
+
+                                    Workflow
+========================================================================================
+(Current working)     (Temp storage)          (Permanant Local Storage)
+workdir ------------> Staging Area ---------------> Local Repo ------------------> Remote Repository
+         (git add .)                (git commit)                  (Git push)       (Github, Gitlab)
