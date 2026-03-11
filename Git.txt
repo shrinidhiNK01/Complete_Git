@@ -37,3 +37,9 @@ Git code cheet sheet
 (Current working)     (Temp storage)          (Permanant Local Storage)
 workdir ------------> Staging Area ---------------> Local Repo ------------------> Remote Repository
          (git add .)                (git commit)                  (Git push)       (Github, Gitlab)
+
+GitIgnore:-
+=======================
+step1:- Make a folder .gitignore
+step2:- add the file names u dont want to track 
+a)track any files except ".css" extention :-  *.css :- write this inside ur .gitignore file
