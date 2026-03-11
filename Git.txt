@@ -49,9 +49,15 @@ b)dont track this folder :- Folder_name\ :- write this inside ur .gitignore file
 GitRestore:-
 ==========================
 Go back to the last commited repo, Just like doing Undo in Github Repo 
-Restoring from both staging area / Remote area
+Restoring from staging area (only add . can be reverted)
 
 git restore index.js
 or
 git restore .
 
+git restore --staged hello.html  #now it wont track this file
+or
+git restore --staged . 
+
+Git revert:-
+============================
