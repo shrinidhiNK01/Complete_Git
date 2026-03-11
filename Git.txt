@@ -41,5 +41,17 @@ workdir ------------> Staging Area ---------------> Local Repo -----------------
 GitIgnore:-
 =======================
 step1:- Make a folder .gitignore
-step2:- add the file names u dont want to track 
+step2:- add the file names u dont want to track  (app.js)
 a)track any files except ".css" extention :-  *.css :- write this inside ur .gitignore file
+b)dont track this folder :- Folder_name\ :- write this inside ur .gitignore file 
+
+
+GitRestore:-
+==========================
+Go back to the last commited repo, Just like doing Undo in Github Repo 
+Restoring from both staging area / Remote area
+
+git restore index.js
+or
+git restore .
+
