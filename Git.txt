@@ -29,6 +29,7 @@ Git code cheet sheet
 10)git branch 
 11)git remote add origin <url>
 12)git push -u origin master
+13)rm -rf .git :- remove the initialisation file
 
 
 
