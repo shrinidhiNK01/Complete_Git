@@ -82,3 +82,36 @@ git reset --mixed HEAD~1
 c) Commit → Completely Removed (Working Directory also reset)
 git reset --hard HEAD~1
 
+Global and Local aliasis:
+=========================================
+ls -a   //all files in that folder 
+nano <file_name>  //text editor  ==>| [alias]           | ==>ctrl+s and ctrl+x to save and exit
+                                    |       st=status   |
+*> we aliased the status as st , now instead of git status , st will also run
+
+eg:- git config --global alias.st status
+eg:- git config --global alias.b branch 
+
+Branches:- For team work
+=========================================
+git branch
+rename:- git branch -M main
+new branch:- git branch second
+switch:- git switch second
+    //or
+git checkout -b second
+    //or
+git switch -c second
+delete:- git branch -d second  //deletes only after switching it back to master 
+
+step1:- git checkout -b new-branch
+step2:- new file, write in it, save
+step3:- git add .
+step4:- git commit -m"add all"
+step5:- git push -u origin master 
+step6:- git checkout master  //now it will go
+step7:- git checkout new-branch  //now it will come
+
+//This dont affect one branch projects to another branch projects
+//always add and commit , then only it will work 
+

@@ -1,3 +1,6 @@
 *.css
 app.js
 Folder_name/
+
+[alias]
+	st=status
