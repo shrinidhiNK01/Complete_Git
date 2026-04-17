@@ -166,3 +166,51 @@ or
 git commit .\index.html -m "add all"
 git push 
 
+Git stash:-
+=================
+It is used to check the code in other branch without committing
+
+step1:- git stash  //temporary area
+     :- git stash list
+step2:- git checkout <branch_name> //branch switch
+step3:- git checkout <previous_branch_name>  //back to previous branch
+step4:- git stash pop  //to get the code back and it will be removed from stash area
+come from stach area to current working directory:- git stash apply 
+                                       Perticular:- git stash apply stash@{0}
+                                       Perticular:- git stash pop stash@{0}
+
+//To remove the stash area
+git stash drop
+git stash clear
+
+Collaberate with other team members in Github Repo:-
+====================================================
+step1:- git pull origin master
+step2:- git checkout -b <branch_name>
+step3:- new file, write in it, save
+step4:- git add .
+step5:- git commit -m"add all"
+step6:- git push -u origin master 
+step7:- git checkout master  //now it will go
+step8:- git checkout new-branch  //now it will come
+
+or
+Team lead:-
+===================
+github->repo making-> Invite collaborator->enter email id->add people->type username of that other team member->add->Invitation in Github of other team collaborator->accept Invitation->now team lead will push his code to the repo, that can be used by all his added collaborators
+
+Team member:-
+=================== 
+1)git clone of that pushed repo 
+2)then add his files
+3)before pushing his files =>git config --global --unset user.name "username" and git config --global --unset user.email "email_id" of that team member 
+4)then see the git config --list 
+5)go to search bar and type "credential manager" and open it
+6)click on windows credential
+7)click on git:https://github.com
+8)click on remove
+9)now push the code ->Authenticate
+
+Team Lead:-
+==================
+git pull origin master
