@@ -116,3 +116,53 @@ step7:- git checkout new-branch  //now it will come
 //This dont affect one branch projects to another branch projects
 //always add and commit , then only it will work 
 
+//To merge files => we have to comback to master(original) branch and merge
+
+git merge second   ,to come out of merge commit editor :-esc ,:qa! and enter
+
+git amend:-
+================
+//change something in file
+git add .
+git commit --ammend
+or
+git commit --ammend -m "Done by me"
+
+git clone:-
+==============
+git clone <url>
+git clone <url> .
+git clone --branch <Name> <url>
+
+
+git pull:-
+=====================
+//instead of clonong every time, bringing the repo directly to the working Directory
+git fetch origin     :- Download the code pushed by others
+git merge origin/main or master 
+
+//and pull is the combination of the above fetch and merge, we can directly use pull 
+git pull origin master
+
+git difference:-
+=======================
+//To check the difference
+git diff
+git diff --staged 
+git diff origin/master 
+
+git log --oneline  ==> It will give a hash Value
+git diff <hash value1> <hash value2>
+
+git diff --name-only
+git diff --cached
+git diff --color-words
+
+
+skip staging area:-
+=====================
+git commit -a -m "add all"
+or
+git commit .\index.html -m "add all"
+git push 
+
