@@ -1,0 +1,28 @@
+Github Actions:-
+==================
+Built in CI CD tool in Github
+Automates tasks like testing,Building,Deploying the code
+Works like a virtual Assistant for developers
+Improves Code quality
+Auto Deployment
+Scalable and secure 
+Automated process that runs based on triggers
+defined using .yaml files (workflow files) stored in .github/workflows/ folder
+can run on different operating systems (Windows, Linux, Mac)
+
+
+
+Github Actions Workflow:-
+===========================
+A Github Actions workflow consists of 3 components:
+1.Workflow (.yaml file)   //The entire automation pipeline
+2.Events (when workflow runs)  //Triggers for the workflow
+3.Jobs (steps to be executed)  //Sequence of tasks to be executed
+4.Step:- Individual task within a job
+5.Runner:- The machine that runs the job
+6.Actions:- Reusable code that performs specific tasks
+
+
+Workflow Execution:-
+========================
+event occurs ->workflow starts ->job executes in parallel(by default)->inside job->steps executed sequentially (by default)->tasks complete->workflow finishes
