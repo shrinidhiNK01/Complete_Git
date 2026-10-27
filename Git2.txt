@@ -1,0 +1,159 @@
+Git objects:-
+=================
+Blob :- File contents ,only data , no filename
+Tree :- Folders
+Commit ->snapshot (Author ,Parent Commit ,Tree , Message, Timestamp) 1 commit points to 1 tree ,1 tree points to 1 blob
+Tag:- named Version
+
+(commit -> tree-> blob-> actual file content)
+
+git config --list --show-origin     //View Config Sources
+ls -la   //view files and folder inside the folder
+
+-------------------------------------------------------------------------
+cd .git
+ls 
+---
+1)Head = Head points to current branch (cat head)
+2)config = Repository configuration (cat config) :- Repository settings,username,email,remote
+3)objects = contains entire database (commits,trees,blob,tags) ,git stores everything here
+4)refs = contains branches and tags 
+5)logs = stores movement history 
+6)hooks = contains automation scripts ,run tests before commit 
+7)info = contains exclude file(ignore)
+
+
+SHA Hash :- Git identifies everything using SHA.Unique identity , ,Integrity,fast lookup, no duplicates ,1 blob 
+
+
+git status:- git compares working directory, staging area, repository it tells modified, deleted, new, staged, branch, merge conflicts 
+
+git add . = Git copies the current version into the staging area.
+
+commit -> SHA -> History Updated
+
+Developer workflow:-
+========================
+git pull -----> edit files --------> git status  --------->git diff --------> git add . --------->git commit -m "add all" --->git push
+
+Git branch workflow:-
+=======================
+folder -> git init -> create files -> commit -> git checkout -b second -> edit the file -> git add and commit -> git checkout master ->now the edit gets disappeared ->because commits belongs to different branches , each branches has no idea of other branches ->git merge second
+
+Company workflow:-
+=========================
+git fetch origin
+
+git rebase origin/main
+
+Conflict?
+
+↓
+
+Open file
+
+↓
+
+Resolve
+
+↓
+
+git add .
+
+↓
+
+git rebase --continue
+
+↓
+
+Push
+====================================================================================================================================
+How Rebase Works Internally
+
+Suppose
+
+master
+
+A ----- B ----- C
+
+Feature
+
+A ----- B ----- D ----- E
+
+Now master receives
+
+F
+G
+master
+
+A-B-C-F-G
+
+Feature still
+
+A-B-D-E
+
+Now
+
+git rebase master
+
+Git DOES NOT move commits.
+
+Instead
+
+Step 1
+
+Temporarily removes
+
+D
+E
+
+Feature becomes
+
+A-B
+
+Step 2
+
+Moves feature pointer
+
+A-B-C-F-G
+
+Step 3
+
+Replays
+
+D
+
+then
+
+E
+
+Result
+
+A-B-C-F-G-D'-E'
+
+Notice
+
+D'
+
+E'
+
+These are NEW commits.
+
+Different hashes.
+=====================================================================================================================================
+Practical 1
+
+Create changes.
+
+echo "hello" >> file.txt
+
+Check:
+
+git status
+
+Now:
+
+git stash
+git status
+git stash pop
+git status

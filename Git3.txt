@@ -1,0 +1,151 @@
+Git Cherry Pick
+==================
+only need to commit 1 branch among multiple branches without merging everything
+1)copy git log --oneline 
+2)git checkout master
+3)git cherry-pick pase_the_id   =>only that commit comes
+
+--------------------------------------------------------------------------------------------------------------------------------------
+Even after: git reset --hard you can recover.
+===========================================
+git reflog
+git reset --hard HEAD@{2}
+or
+git reset --hard COMMIT_ID
+
+--------------------------------------------------------------------------------------------------------------------------------------
+Difference between git log and git reflog
+============================================
+git log	                                git reflog
+==============                        =====================
+Shows commit history	              Shows HEAD movement history
+Doesn't show deleted commits	      Shows deleted commits
+Doesn't show branch switching	      Shows every checkout
+Doesn't show resets	                  Shows every reset
+Permanent history	                  Local history only
+ 
+Remember:
+
+Git Log = History of commits
+
+Git Reflog = History of HEAD
+
+--------------------------------------------------------------------------------------------------------------------------------------
+Git doesn't store files, it stores objects 
+1)Blob :- 
+=============
+Binary Large Object, it stores a file content only 
+when we stage , there creates a blob 
+it doesn't know filename , folder ,permissions ,dates 
+It only know file content 
+
+2)git add hello.txt
+git hash-object hello.txt , it gives a 40 character string that is called SHA-1 , Git identified this file using its content.
+
+3)SHA-1 doesn't store hello.txt, it stores the 40 char string , this is called content addressing 
+irrespective of file name , even if multiple files has same content , then also all of them will have same hash-object, filename doesn't matter 
+
+even changing 1 char will change the entire string in SHA = Avalanche Effect. 
+
+How to view Blob
+================
+git hash-object hello.txt   == it will give hash value of the file
+cd .git
+cd objects
+git cat-file -p paste_SHA  //output will be the content of the file
+
+Tree stores folder structure 
+tree connects blob with filename 
+
+commit stores 
+=================
+Author
+
+Date
+
+Message
+
+Parent Commit
+
+Tree Pointer
+========================================================================================================================
+*commit stores the trees and trees store the blobs 
+git cat-file -p HEAD        ====> This will show all
+
+git cat-file -p HEAD
+git cat-file -p <TREE_SHA>
+git cat-file -p <BLOB_SHA>
+--------------------------------------------------------------------------------------------------------------------------------------
+Full Git Object Flow
+====================
+git add
+
+↓
+
+Blob Created
+
+↓
+
+git commit
+
+↓
+
+Tree Created
+
+↓
+
+Commit Created
+
+↓
+
+Branch Pointer Updated
+
+↓
+
+HEAD Updated
+
+-------------------------------------------------------------------------------------------------------------------------------------
+A remote is simply another Git repository.
+
+It can be:
+
+GitHub
+GitLab
+Bitbucket
+Azure DevOps
+Another computer
+Another folder on your machine
+
+see remotes:-
+==============
+git remote
+git remote -v
+git remote add origin https://github.com/shrinidhi/Learning.git
+git remote -v
+git remote show origin
+git remote rename origin github
+git remote -v
+git remote remove github
+git remote remove origin
+git remote rename github origin
+git remote -v
+git remote show origin
+
+Git supports multiple remotes.
+--------------------------------------------------------------------------------------------------------------------------------------
+1)git push origin master
+or
+2)git push -u origin master    //upstream tracking relationship.
+after this 2) we can directly git push
+--------------------------------------------------------------------------------------------------------------------------------------
+Git = Local Version Control
+
+GitHub = Remote Version Control
+--------------------------------------------------------------------------------------------------------------------------------------
+git pull
+
+
+Notes:-
+===========
+master is a local branch stored inside .git
+origin/master is a remote tracking branch (Git creates this automatically.)

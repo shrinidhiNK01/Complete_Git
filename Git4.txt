@@ -1,0 +1,527 @@
+git fetch downloads the latest changes from the remote repository without changing your local files or current branch.
+
+Suppose you're working on an important feature. You don't want your files to change automatically.
+
+GitHub
+↓
+
+fetch
+
+↓
+
+Inspect
+
+↓
+
+Review
+
+↓
+
+Merge later
+
+That's much safer than pull.
+
+git clone will download the remote repo and updates the local files 
+git fetch will download the remote repo but does not updates the local files 
+Imagine your friend uploads a new assignment.
+
+You download it to your computer.
+
+But you don't copy it into your own assignment yet.
+
+You only keep it in another folder.
+
+That is exactly what git fetch does.
+
+Step 1
+
+GitHub
+
+A
+↓
+B
+↓
+C
+
+Laptop
+
+master
+
+A
+↓
+B
+↓
+C
+
+
+        │
+        │ Someone pushes D
+        ▼
+
+
+Step 2
+
+GitHub
+
+A
+↓
+B
+↓
+C
+↓
+D
+
+Laptop
+
+master
+
+A
+↓
+B
+↓
+C
+
+
+        │
+        │ git fetch
+        ▼
+
+
+Step 3
+
+Laptop
+
+master
+
+A
+↓
+B
+↓
+C
+
+
+origin/master
+
+A
+↓
+B
+↓
+C
+↓
+D
+
+
+(No merge happened)
+
+git fetch = Download the latest commits from GitHub without changing your current branch.
+master stays where it is.
+origin/master moves to the latest commit from GitHub.
+
+
+git fetch --all  //Downloads changes from every configured remote.
+git branch -a
+git log --oneline --all --graph --decorate    //Compare Local vs Remote
+git fetch origin
+git fetch backup
+git fetch upstream
+git fetch origin master
+git diff master origin/master    //This compares: Local master and Remote-tracking origin/master
+
+
+
+git fetch
+git fetch origin
+git fetch origin master
+git fetch --all
+git branch -a
+git log --oneline --graph --decorate --all
+git diff master origin/master
+--------------------------------------------------------------------------------------------------------------------------------------
+
+git fetch
+============
+Downloads changes
+Does NOT merge
+
+git pull
+============
+Downloads changes
+Immediately merges
+
+git pull = git fetch + git merge
+
+1)git fetch   ==>inspecting instead of blindly copying ,Fetch NEVER touches your code
+2)git diff master origin/master
+3)git merge origin/master
+
+or 
+
+1)git pull
+--------------------------------------------------------------------------------------------------------------------------------------
+                 GitHub Server
+                      │
+                      │
+          origin/master (Remote Tracking Branch)
+                      │
+                      │
+                Local master
+                      │
+                      │
+               Working Directory
+
+origin/master is NOT on GitHub.
+It is inside your .git folder.
+
+--------------------------------------------------------------------------------------------------------------------------------------
+Instead of merge:-
+====================
+git fetch
+git rebase origin/master
+
+or
+
+git pull --rebase
+--------------------------------------------------------------------------------------------------------------------------------------
+When fast forword push:-
+========================
+git pull
+Resolve
+git push
+
+or
+
+git push --force
+
+or
+
+git push -f    //This overwrites remote history.
+
+or
+
+git push --force-with-lease  //this one is better
+--------------------------------------------------------------------------------------------------------------------------------------
+What is a Tag?
+===============
+A permanent name pointing to a specific commit.Tags never move
+
+git checkout v1.0
+git log --oneline --decorate
+
+Types of Tags:-
+===================
+1)Lightweight Tag :- Just a pointer. 
+==================
+git tag v1.0
+No extra information.
+
+2)Annotated Tag:-
+==================
+git tag -a v1.0 -m "First stable release"
+Stores
+
+Author
+Date
+Message
+Checksum
+
+Think of it like a mini commit for releases.
+
+How to tag:-
+================
+git log --oneline
+git tag v1.0 98a1234
+
+delete tag:- git tag -d v1.0 
+
+Push one tag :- git push origin v2.0
+Push all tags :- git push origin --tags
+Delete Remote Tag :- git push origin --delete v2.0
+
+Detached HEAD State. :- You can explore old code safely.
+
+Checkout Tag
+
+Suppose
+
+HEAD
+
+↓
+
+Version 5
+
+Need Version 1.
+
+Run
+
+git checkout v1.0
+
+Git says
+
+Detached HEAD
+
+Don't panic.
+
+This is expected.
+
+Detached HEAD
+
+Normally
+
+master
+
+↓
+
+Commit
+
+HEAD points to branch.
+
+HEAD
+
+↓
+
+master
+
+↓
+
+Commit
+
+After
+
+git checkout v1.0
+
+HEAD directly points to a commit.
+
+HEAD
+
+↓
+
+Commit
+
+No branch.
+
+This is called
+
+Detached HEAD State.
+
+You can explore old code safely.
+
+If You Commit in Detached HEAD
+A
+↓
+
+B
+↓
+
+C ← v1.0
+
+↓
+
+New Commit
+
+No branch points to the new commit.
+
+If you switch away, it can become unreachable (though git reflog can usually recover it).
+
+If you want to continue working from that point, immediately create a branch:
+
+git switch -c hotfix-v1
+
+Now your new commit has a branch pointing to it.
+--------------------------------------------------------------------------------------------------------------------------------------------
+Git tag Flow:-
+===============
+git status
+git branch
+git log --oneline
+git tag
+
+Create Your First Lightweight Tag
+=================================
+git tag v1.0
+git tag
+git log --oneline --decorate
+
+Create More Commits
+===================
+echo "Version 2 Feature" >> app.txt
+git add .
+git commit -m "Added Version 2 feature"
+
+Tag an Older Commit
+====================
+git log --oneline
+git tag v0.9 cb99a31
+git tag
+
+Create an Annotated Tag
+========================
+git tag -a v2.0 -m "Second stable release"
+git tag
+
+Inspect Annotated Tag
+==================
+git show v2.0
+
+git push origin master  //Tags are NOT pushed.
+git push origin v2.0  //Push One Tag
+git push origin --tags   //Push All Tags
+
+Delete Local Tag
+=================
+git tag -d v1.0
+git tag
+
+Recreate Deleted Tag
+====================
+git tag v1.0
+git tag
+
+Push Recreated Tag
+====================
+git push origin v1.0  
+
+Delete Remote Tag
+====================
+git push origin --delete v2.0
+
+Checkout Old Version
+==========================
+git checkout v1.0
+git status
+
+Create Branch from Tag
+=======================
+git switch -c release-fix
+
+Make a Hotfix
+===============
+echo "Bug Fixed" >> app.txt
+git add .
+git commit -m "Hotfix for Version 1.0"
+
+Return to Master
+===================
+git switch master
+git branch
+
+Visualize Everything
+======================
+git log --oneline --decorate --graph --all
+git show v1.0
+git show v2.0
+
+List Tags with Messages
+==========================
+git tag -n
+
+Professional Workflow Used in Companies
+========================================
+git add .
+git commit -m "Completed authentication"
+
+git tag -a v3.0 -m "Authentication Release"
+
+git push origin master
+
+git push origin v3.0
+
+Final Flow (Quick Revision)
+==============================
+git status
+git branch
+git log --oneline
+
+git tag
+
+git tag v1.0
+git tag
+
+git log --oneline --decorate
+
+echo "Version 2 Feature" >> app.txt
+git add .
+git commit -m "Added Version 2 feature"
+
+git log --oneline
+
+git tag v0.9 <commit-id>
+
+git tag -a v2.0 -m "Second stable release"
+
+git show v2.0
+
+git push origin master
+git push origin v2.0
+git push origin --tags
+
+git tag -d v1.0
+git tag v1.0
+
+git push origin --delete v2.0
+
+git checkout v1.0
+
+git status
+
+git switch -c release-fix
+
+echo "Bug Fixed" >> app.txt
+git add .
+git commit -m "Hotfix for Version 1.0"
+
+git switch master
+
+git log --oneline --decorate --graph --all
+
+git tag -n
+git show v1.0
+git show v2.0
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+Fork creates your own copy of someone else's repository on GitHub.
+Original Repository
+
+↓
+
+Fork
+
+↓
+
+Your GitHub Account
+
+↓
+
+Clone
+
+↓
+
+Laptop
+-----------------------------------------------------------------------------------------------------------------------------
+Every time you make a change, whether it's adding
+a sentence to a document or altering a line of code,
+the VCS records and saves the outcome.
+
+Backup and Restore: Files are safe against accidental losses or mistakes.
+
+Collaboration: Multiple people can work on the same project
+simultaneously.
+
+Branching and Merging: Users can diverge from the main base of code,
+experiment, and then bring changes back in line without losing work.
+
+Tracking Changes: You can see specific changes made and by whom.
+
+A git commit is a command in Git that captures
+a snapshot of the project's currently staged
+changes, creating a permanent record in the
+repository's history.
+
+-----------------------------------------------------------------------------------------------------------------------------
+when u are in 4th version , but u want to see the first version back 
+=====================================================================
+git log 
+
+copy the commit hash value of the version u want to see but write the commit message clearly that it is 1st version, this second version 
+
+git show paste_commit_hash_value:<file_name>
+
